@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
 	"net/http"
 )
@@ -10,7 +11,9 @@ func main() {
 	h := func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
-		w.Write([]byte("Hello world"))
+		by, _ := json.Marshal("Hello World")
+
+		w.Write(by)
 	}
 
 	http.HandleFunc("/", h)
