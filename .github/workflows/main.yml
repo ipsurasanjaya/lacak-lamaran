@@ -41,9 +41,9 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script:
             whoami
-            if [ "$(docker ps -aq -f name=${{ env.CONTAINER_NAME }})" ]; then
-              docker stop ${{ env.CONTAINER_NAME }}
-              docker rm ${{ env.CONTAINER_NAME }}
+            if [ "$(docker ps -aq -f name=${{ vars.CONTAINER_NAME }})" ]; then
+              docker stop ${{ vars.CONTAINER_NAME }}
+              docker rm ${{ vars.CONTAINER_NAME }}
             fi
             docker pull ${{ vars.IMAGE_NAME }}
             docker run -d -p 1213:1213 --name ${{ vars.CONTAINER_NAME }} ${{ vars.IMAGE_NAME }}
